@@ -1,0 +1,95 @@
+#:import Window kivy.core.window.Window
+
+
+<Account>:
+    name: 'account'
+    FloatLayout:
+        size_hint:(1,1)
+        FitImage:
+            source: "data/images/account.jpg"
+            radius: [0,]
+
+        MDFillRoundFlatButton:
+            text: "main page"
+            custom_color: 0, 1, 0, 1
+            text_color: 0, 1, 0, 1
+            line_color: 0, 0, 1, 1
+            size_hint:.1,.05
+            pos_hint:{'x':.01,'y':.93}
+            on_press:
+                app.click_sound
+                app.progress()
+                app.switch_screen('mainpage')
+
+ 
+
+
+        
+
+
+
+
+        
+                
+
+
+        MDFloatingActionButtonSpeedDial:
+            callback:root.callback
+            data: 
+                {'create user': 'account',
+                'create admin': 'account-tie'}
+
+        
+        
+
+        MDFillRoundFlatButton:
+            text: "settings"
+            custom_color: 0, 1, 0, 1
+            text_color: 0, 1, 0, 1
+            line_color: 0, 0, 1, 1
+            size_hint:.1,.05
+            pos_hint:{'x':.78,'y':.93}
+            on_press:
+                app.click_sound
+                app.progress()
+                app.switch_screen('settings')   
+
+        MDLabel:
+            text: "CREATE ACCOUNTS "
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: 1, 0, 1, 1
+            size_hint:.1,.1
+            pos_hint:{'x':.45,'y':.93}
+ 
+        
+
+        MDFillRoundFlatButton:
+            text: "logout"
+            custom_color: 0, 1, 0, 1
+            text_color: 0, 1, 0, 1
+            line_color: 0, 0, 1, 1
+            size_hint:.1,.05
+            pos_hint:{'x':.89,'y':.93}
+            on_press:
+                app.click_sound
+                app.progress()
+                app.switch_screen('login')  
+
+        
+           
+    
+        
+            
+
+            
+
+   
+           
+
+                
+
+               
+                  
+
+

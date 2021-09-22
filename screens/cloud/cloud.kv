@@ -1,0 +1,65 @@
+#:import Window kivy.core.window.Window
+
+
+<Cloud>:
+    name: 'cloud'
+    FloatLayout:
+        size_hint:(1,1)
+        MDBottomNavigation:
+            text_color_active: 1, 0, 1, 1
+            pos_hint:{'x':.0,'y':0}
+            size_hint:(1,0)
+            
+
+        
+
+
+        MDFillRoundFlatButton:
+            text: "main page"
+            custom_color: 0, 1, 0, 1
+            text_color: 0, 1, 0, 1
+            size_hint:.1,.05
+            pos_hint:{'x':.01,'y':.92}
+            on_press:
+                app.click_sound
+                app.progress()
+                app.switch_screen('mainpage')
+
+        MDFillRoundFlatButton:
+            text: "update"
+            custom_color: 0, 1, 0, 1
+            text_color: 0, 1, 0, 1
+            size_hint:.1,.05
+            pos_hint:{'x':.89,'y':.92}
+            on_press:
+                app.click_sound
+                root.Update()
+
+        
+
+        
+          
+
+     
+        
+
+        
+
+
+            
+
+        
+
+           
+
+            
+
+   
+           
+
+                
+
+               
+                  
+
+

@@ -1,0 +1,210 @@
+#:import Window kivy.core.window.Window
+#:import Window kivy.core.window.Window
+#:import IconLeftWidget kivymd.uix.list.IconLeftWidget
+
+<ItemBackdropFrontLayer@TwoLineAvatarListItem>
+    icon: "android"
+
+   
+
+
+<MyBackdropFrontLayer@ItemBackdropFrontLayer>
+    backdrop: None
+    
+    on_press: root.backdrop.open(-Window.height / 2)
+    pos_hint: {"top": 1}
+    _no_ripple_effect: True
+
+
+<MyBackdropBackLayer@Image>
+    size_hint: .8, .8
+    source: "data/logo/kivy-icon-512.png"
+    pos_hint: {"center_x": .5, "center_y": .6}
+
+
+<Mainpage>:
+    name: 'mainpage'
+    me2:me2
+    user:user
+    history:history
+    MDBackdrop:
+        title: "WELCOME"
+        header_text: ""
+
+        MDBackdropBackLayer:
+            MyBackdropBackLayer:
+                id: backlayer
+
+      
+     
+    FloatLayout:
+        size_hint:(1,1)
+        
+        Switch:
+            pos_hint:{'x':.5,'y':5}
+            size_hint:(1,1)
+            active: True
+            on_active: root.switch_callback(self, self.active)
+
+        
+
+       
+        MDBottomNavigation:
+            panel_color: 0,0,0,0
+            text_color_active: 1, 1, 1, 1
+            pos_hint:{'x':.0,'y':0}
+            size_hint:(1,0)
+
+
+            MDBottomNavigationItem:
+                id:me2
+                text: 'choose file'
+                color: 0,0,0,0
+                icon: 'folder'
+                on_tab_release:
+                    app.click_sound
+                    root.file_manager_open()
+
+            MDBottomNavigationItem:
+                text: 'dashboard'
+                icon: 'home-variant'
+                on_tab_release:
+                    app.click_sound
+                    app.progress()
+                    app.switch_screen('home')
+
+
+                
+
+
+
+        
+
+
+           
+
+        
+
+        
+        
+        
+
+        MDFillRoundFlatButton:
+            text: "main page"
+            custom_color: 0, 1, 0, 1
+            text_color: 0, 1, 0, 1
+            line_color: 0, 0, 1, 1
+            size_hint:.1,.05
+            pos_hint:{'x':.01,'y':.83}
+            on_press:
+                app.click_sound
+                app.progress()
+                app.switch_screen('mainpage')
+                
+
+
+        MDFillRoundFlatButton:
+            id:history
+            text: "history"
+            custom_color: 0, 1, 0, 1
+            text_color: 0, 1, 0, 1
+            line_color: 0, 0, 1, 1
+            size_hint:.1,.05
+            pos_hint:{'x':.12,'y':.83}
+            on_press:
+                app.click_sound
+                app.progress()
+                app.switch_screen('cloud')  
+
+        MDFillRoundFlatButton:
+           
+            text: "play"
+            custom_color: 0, 1, 0, 1
+            text_color: 0, 1, 0, 1
+            line_color: 0, 0, 1, 1
+            size_hint:.1,.05
+            pos_hint:{'x':.23,'y':.83}
+            on_press:
+                root.Play()
+
+        MDLabel:
+            text: "software "
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: 1, 0, 1, 1
+            size_hint:.1,.1
+            pos_hint:{'x':.45,'y':.80}
+
+        
+        MDFillRoundFlatButton:
+            id:user
+            text: "Account"
+            custom_color: 0, 1, 0, 1
+            text_color: 0, 1, 0, 1
+            line_color: 0, 0, 1, 1
+            size_hint:.1,.05
+            pos_hint:{'x':.67,'y':.83}
+            on_press:
+                app.click_sound
+                app.progress()
+                app.switch_screen('account')   
+
+        MDFillRoundFlatButton:
+            text: "settings"
+            custom_color: 0, 1, 0, 1
+            text_color: 0, 1, 0, 1
+            line_color: 0, 0, 1, 1
+            size_hint:.1,.05
+            pos_hint:{'x':.78,'y':.83}
+            on_press:
+                app.click_sound
+                app.progress()
+                app.switch_screen('settings')   
+ 
+        
+
+        MDFillRoundFlatButton:
+            text: "logout"
+            custom_color: 0, 1, 0, 1
+            text_color: 0, 1, 0, 1
+            line_color: 0, 0, 1, 1
+            size_hint:.1,.05
+            pos_hint:{'x':.89,'y':.83}
+            on_press:
+                app.click_sound
+                app.progress()
+                app.switch_screen('login')  
+
+        
+    
+    
+      
+
+
+
+        
+      
+
+     
+        
+
+        
+
+
+            
+
+        
+
+           
+
+            
+
+   
+           
+
+                
+
+               
+                  
+
+

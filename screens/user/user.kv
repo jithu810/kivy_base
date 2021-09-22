@@ -1,0 +1,172 @@
+#:import Window kivy.core.window.Window
+
+
+<User>:
+    name: 'user'
+    username:usename
+    email:email
+    password:password
+    password2:password2
+    submitbutton:submitbutton
+    kvlayout:kvlayout
+    updatebutton:updatebutton
+    FloatLayout:
+        id:kvlayout
+        size_hint:(1,1)
+        FitImage:
+            source: ""
+            radius: [0,]
+
+        MDFillRoundFlatButton:
+            text: "main page"
+            custom_color: 0, 1, 0, 1
+            text_color: 0, 1, 0, 1
+            line_color: 0, 0, 1, 1
+            size_hint:.1,.05
+            pos_hint:{'x':.01,'y':.93}
+            on_press:
+                app.click_sound
+                app.progress()
+                root.Clean()
+                app.switch_screen('mainpage')
+
+        MDFillRoundFlatButton:
+            id:updatebutton
+            text: "update profile"
+            custom_color: 0, 1, 0, 1
+            text_color: 0, 1, 0, 1
+            line_color: 0, 0, 1, 1
+            size_hint:.1,.05
+            pos_hint:{'x':.12,'y':.93}
+            on_press:
+                app.click_sound
+                root.Updateprofile()
+
+        
+        
+
+        MDFillRoundFlatButton:
+            text: "settings"
+            custom_color: 0, 1, 0, 1
+            text_color: 0, 1, 0, 1
+            line_color: 0, 0, 1, 1
+            size_hint:.1,.05
+            pos_hint:{'x':.78,'y':.93}
+            on_press:
+                app.click_sound
+                app.progress()
+                app.switch_screen('settings')   
+
+        MDFillRoundFlatButton:
+            text: "account"
+            custom_color: 0, 1, 0, 1
+            text_color: 0, 1, 0, 1
+            line_color: 0, 0, 1, 1
+            size_hint:.1,.05
+            pos_hint:{'x':.23,'y':.93}
+            on_press:
+                app.click_sound
+                app.progress()
+                root.Clean()
+                app.switch_screen('account') 
+
+        MDLabel:
+            text: "CREATE USER "
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: 1, 0, 1, 1
+            size_hint:.1,.1
+            pos_hint:{'x':.45,'y':.93}
+ 
+        
+
+        MDFillRoundFlatButton:
+            text: "logout"
+            custom_color: 0, 1, 0, 1
+            text_color: 0, 1, 0, 1
+            line_color: 0, 0, 1, 1
+            size_hint:.1,.05
+            pos_hint:{'x':.89,'y':.93}
+            on_press:
+                app.click_sound
+                app.progress()
+                app.switch_screen('login')  
+
+        Label:
+            text : "NAME: "
+            size_hint : 0.2, 0.1
+            pos_hint : {"x":0.15, "y":0.78}
+            color:1,0,0,1
+
+        MDTextField:
+            id:usename
+            hint_text: "enter name"
+            mode: "fill"
+            fill_color: 0, 0, 0, .4
+            size_hint : 0.4, 0.07
+            pos_hint : {"x" : 0.35, "y" : 0.8}
+            
+        Label:
+            text : "EMAIL: "
+            size_hint : 0.2, 0.1
+            pos_hint : {"x" : 0.15, "y" : 0.68}
+            color:1,0,0,1
+
+        MDTextField:
+            id:email
+            hint_text: "enter email"
+            mode: "fill"
+            fill_color: 0, 0, 0, .4
+            size_hint : 0.4, 0.07
+            pos_hint : {"x" : 0.35, "y" : 0.7}
+        Label:
+            text : "PASSWORD: "
+            size_hint : 0.2, 0.1
+            pos_hint : {"x" : 0.15, "y" : 0.58}
+            color:1,0,0,1
+
+        MDTextField:
+            id:password
+            hint_text: "enter password"
+            mode: "fill"
+            fill_color: 0, 0, 0, .4
+            size_hint : 0.4, 0.07
+            pos_hint : {"x" : 0.35, "y" : 0.6}
+
+        Label:
+            text : "CONFIRM PASSWORD: "
+            size_hint : 0.2, 0.1
+            pos_hint : {"x" : 0.15, "y" : 0.48}
+            color:1,0,0,1
+
+        MDTextField:
+            id:password2
+            hint_text: "re-enter password"
+            mode: "fill"
+            fill_color: 0, 0, 0, .4
+            size_hint : 0.4, 0.07
+            pos_hint : {"x" : 0.35, "y" : 0.5}
+        Button:
+            id:submitbutton
+            text : "SUBMIT"
+            size_hint : 0.3, 0.1
+            pos_hint : {"x" : 0.39, "top" : 0.28}
+            on_press:root.submit()
+
+        
+           
+    
+        
+            
+
+            
+
+   
+           
+
+                
+
+               
+                  
+
+
