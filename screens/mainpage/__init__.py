@@ -13,29 +13,27 @@ from kivymd.uix.button import MDRoundFlatIconButton,MDRectangleFlatButton
 from kivymd.app import MDApp
 from kivymd.uix.progressbar import MDProgressBar
 from kivy.properties import StringProperty
-
 from kivymd.toast import toast
 from kivymd.uix.bottomsheet import MDGridBottomSheet
 from kivymd.uix.chip import MDChip
 from kivymd.uix.filemanager import MDFileManager
 from kivy.core.window import Window
-
 from kivymd.uix.taptargetview import MDTapTargetView
-
 from kivymd.uix.textfield import MDTextField
 from ..cloud import Cloud
 from screens import cloud
-import os
 from kivymd.uix.label import MDLabel
-
 import sqlite3
-
 import time    
 from datetime import timedelta
 from kivy.clock import Clock
 from datetime import datetime
 from datetime import date
 from kivy.uix.switch import Switch
+import glob
+import shutil
+import os
+from kivymd.utils.fitimage import FitImage
 
 
 
@@ -55,17 +53,21 @@ class Mainpage(MDScreen):
         self.file_manager = MDFileManager(
             exit_manager=self.exit_manager,
             select_path=self.select_path,
-            ext=[".py", "kv",".vmem"],
+            ext=[".py", "kv",".vmem",".jpg",".jpeg",".png"],
         )
         self.labeluser=MDLabel(text= self.now.strftime('%H:%M:%S'),font_style=("H6"),size_hint=(.1,.2),pos_hint={'x':.91,'y':.84},color=(1,1,1,1))
         self.layout.add_widget(self.labeluser)
         self.date=MDLabel(text=str(today),font_style=("H6"),size_hint=(.1,.2),pos_hint={'x':.90,'y':.88},color=(1,1,1,1))
         self.layout.add_widget(self.date)
-        self.person=MDRoundFlatIconButton(font_style=("H6"),text_color=(1, 0, 0, 1),line_color=(1, 1, 1, 1),icon_color=(1, 0, 0, 1),icon="account",theme_text_color="Custom",size_hint=(.1,.05),pos_hint={'x':.12,'y':.93})
+        self.person=MDRoundFlatIconButton(text_color=(1, 0, 0, 1),line_color=(1, 1, 1, 1),icon_color=(1, 0, 0, 1),icon="account",pos_hint={'x':.17,'y':.93})
         self.person.bind(on_press=self.profile)
         self.layout.add_widget(self.person)
-       
+        self.image=FitImage(size_hint=(.03,.05),pos_hint={'x':.12,'y':.93},radius=[30,])
+        self.add_widget(self.image)
 
+
+
+       
 
     def update_clock(self, *args):
         self.now = self.now + timedelta(seconds = 1)
@@ -80,15 +82,40 @@ class Mainpage(MDScreen):
         self.file_manager.show('/')  
         self.manager_open = True
     
-    
 
     def select_path(self, path):
         global selected
         self.exit_manager()
         toast(path)
-        c=path
-        c2=c.split("\\")
-        selected=(c2[-1])
+        selectedfile = str(path)
+        try:
+            mydir="data/profile/"+str(self.person.text)
+            shutil.rmtree(mydir)
+        except :
+            pass
+        directory="data/profile/"+str(self.person.text)
+
+        filename=path.split("\\")
+        selected=(filename[-1])
+
+        extention=selected.split(".")
+        extentionname=(extention[1])
+
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+        shutil.copy(selectedfile, mydir)
+        for count,filename in enumerate(os.listdir("data/profile/"+str(self.person.text))): 
+            try:
+                dst ="data/profile/"+str(self.person.text)+"/"+str(self.person.text) + str(count) + "."+str(extentionname)
+                src ="data/profile/"+str(self.person.text)+ "/"+filename
+                os.rename(src, dst)
+                MDApp.get_running_app().profile.image.source="data/profile/"+str(self.person.text)+"/"+str(self.person.text) + str(count) + "."+str(extentionname) 
+                MDApp.get_running_app().mainpage.image.source="data/profile/"+str(self.person.text)+"/"+str(self.person.text) + str(count) + "."+str(extentionname) 
+                MDApp.get_running_app().profile.image.reload()
+                MDApp.get_running_app().mainpage.image.reload()
+                
+            except :
+                pass       
 
     def exit_manager(self, *args):
         self.manager_open = False
@@ -98,16 +125,6 @@ class Mainpage(MDScreen):
             if self.manager_open:
                 self.file_manager.back()
         return True
-
-
-    
-   
-            
-
-        
-        
-        
-
 
     def fetch(self, chip_instance):
         if chip_instance.check == True:

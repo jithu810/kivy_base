@@ -19,6 +19,7 @@ from kivy.uix.button import Button
 from kivy.uix.popup import Popup
 import bcrypt
 
+from kivymd.utils.fitimage import FitImage
 class Profile(MDScreen):
     def __init__(self,**kwargs):
         super(Profile,self).__init__(**kwargs)
@@ -26,6 +27,13 @@ class Profile(MDScreen):
         self.add_widget(self.layout)
         self.label=Label()
         self.label2=Label()
+        
+        self.image=FitImage(size_hint=(.05,.09),pos_hint={'x':.13,'y':.75},radius=[35,])
+        self.add_widget(self.image)
+        
+        
+
+     
 
 
     def Updateprofile(self):
@@ -84,12 +92,10 @@ class Profile(MDScreen):
 
     def update(self,instance):
         user=self.label.text
-
         name=self.textinput1.text
         email=self.textinput2.text
         password=self.textinput3.text
         password2=self.textinput4.text
-
         if user=='user':
             if name!="" and password!="":
                 if password==password2:

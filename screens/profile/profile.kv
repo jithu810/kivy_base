@@ -29,21 +29,26 @@
             theme_text_color: "Custom"
             text_color: 1, 0, 1, 1
             size_hint:.1,.1
-            pos_hint:{'x':.45,'y':.80}
+            pos_hint:{'x':.45,'y':.90}
+
+        FitImage:
+            source:"data/images/profilebacground.jpg"
+            size_hint:.3,.7
+            pos_hint:{'x':.01,'y':.1}
 
         MDCard:
             orientation: "vertical"
             padding: "8dp"
             size_hint: None, None
             size: "280dp", "280dp"
-            pos_hint: {"center_x": .26, "center_y": .5}
+            pos_hint: {"center_x": .16, "center_y": .5}
 
             MDLabel:
                 id:person
                 halign: "center"
                 theme_text_color: "Custom"
                 text_color: 1, 0, 1, 1
-                pos_hint:{'x':.1,'y':.63}
+                pos_hint:{'x':.04,'y':.63}
 
             MDSeparator:
                 height: "1dp"
@@ -53,13 +58,7 @@
                 halign: "center"
                 theme_text_color: "Custom"
                 text_color: 1, 0, 1, 1
-                pos_hint:{'x':.1,'y':.53}
-
-        Label:
-            text : "NAME: "
-            size_hint : 0.2, 0.1
-            pos_hint : {"x":0, "y":0.55}
-            color:1,0,0,1
+                pos_hint:{'x':.05,'y':.53}
 
 
         MDFillRoundFlatButton:
@@ -67,53 +66,34 @@
             custom_color: 0, 1, 0, 1
             text_color: 0, 1, 0, 1
             line_color: 0, 0, 1, 1
-            size_hint:.1,.05
-            pos_hint:{'x':.16,'y':.2}
+            size_hint:.08,.03
+            pos_hint:{'x':.12,'y':.27}
             on_press:
                 app.click_sound
                 root.Updateprofile()
-                
-                
-
-
+                          
 
         MDFillRoundFlatButton:
             text: "delete profile"
             custom_color: 0, 1, 0, 1
             text_color: 0, 1, 0, 1
             line_color: 0, 0, 1, 1
-            size_hint:.1,.05
-            pos_hint:{'x':.27,'y':.2}
+            size_hint:.08,.03
+            pos_hint:{'x':.12,'y':.23}
             on_press:
                 app.click_sound
                 root.Message()
-                
-                
-
-
-        
-
-
-        
-
-        
-
-
-        Label:
-            text : "EMAIL: "
-            size_hint : 0.2, 0.1
-            pos_hint : {"x":0, "y":0.40}
-            color:1,0,0,1
-
-
-
             
-                
-
-
-    
-        
-        
+        MDFillRoundFlatButton:
+            text: "choose a profile photo"
+            custom_color: 0, 1, 0, 1
+            text_color: 0, 1, 0, 1
+            line_color: 0, 0, 1, 1
+            size_hint:.1,.03
+            pos_hint:{'x':.11,'y':.7}
+            on_press:
+                app.click_sound
+                app.choosefile()    
 
         MDFillRoundFlatButton:
             text: "settings"

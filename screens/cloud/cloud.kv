@@ -5,13 +5,15 @@
     name: 'cloud'
     FloatLayout:
         size_hint:(1,1)
+        FitImage:
+            source: "data/images/table.jpg"
+            radius: [0,]
+
+
         MDBottomNavigation:
             text_color_active: 1, 0, 1, 1
             pos_hint:{'x':.0,'y':0}
             size_hint:(1,0)
-            
-
-        
 
 
         MDFillRoundFlatButton:

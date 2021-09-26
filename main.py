@@ -71,6 +71,7 @@ class Software(MDApp):
     add_icon_tooltip = StringProperty('Create new')
     search_icon = StringProperty('magnify')
     search_icon_tooltip = StringProperty('Search')
+
     def open_settings(self, *largs):
         self.mainmenu.ids.settings_button.trigger_action()
 
@@ -114,16 +115,20 @@ class Software(MDApp):
             'admin':self.admin,
             'profile':self.profile,
             'table':self.table
-            
         }
         self.sm.switch_to(self.login)
-        
+
         return self.sm
 
     @property
     def click_sound(self):
         click = SoundLoader.load("sound/click.wav")
         click.play()
+
+  
+
+    def choosefile(self):
+        self.mainpage.file_manager_open()
 
 
     def switch_screen(self, screen_name):
@@ -170,6 +175,20 @@ class Software(MDApp):
 
     def Username(self,name,user):
         self.mainpage.person.text=str(name)
+        try:
+            for count,filename in enumerate(os.listdir("data/profile/"+str(name))): 
+                photo="data/profile/"+str(name)+ "/"+filename
+            isFile = os.path.isfile(photo) 
+            if isFile:
+                self.profile.image.source=photo
+                self.mainpage.image.source=photo
+            else:
+                self.profile.image.source="data/images/default1.png"
+                self.mainpage.image.source="data/images/default1.png"
+        except :
+            self.profile.image.source="data/images/default1.png"
+            self.mainpage.image.source="data/images/default1.png"
+
         self.profile.Board(name,user)
 
 
