@@ -72,21 +72,6 @@
                     app.click_sound
                     app.progress()
                     app.switch_screen('home')
-
-
-                
-
-
-
-        
-
-
-           
-
-        
-
-        
-        
         
 
         MDFillRoundFlatButton:
@@ -134,11 +119,23 @@
             text_color: 0, 1, 0, 1
             line_color: 0, 0, 1, 1
             size_hint:.1,.05
-            pos_hint:{'x':.67,'y':.83}
+            pos_hint:{'x':.23,'y':.83}
             on_press:
                 app.click_sound
                 app.progress()
                 app.switch_screen('account')   
+
+        MDFillRoundFlatButton:
+            text: "Exit"
+            custom_color: 0, 1, 0, 1
+            text_color: 0, 1, 0, 1
+            line_color: 0, 0, 1, 1
+            size_hint:.1,.05
+            pos_hint:{'x':.89,'y':.83}
+            on_press:
+                app.click_sound
+                app.progress()
+                root.exitMessage()
 
         MDFillRoundFlatButton:
             text: "settings"
@@ -146,7 +143,7 @@
             text_color: 0, 1, 0, 1
             line_color: 0, 0, 1, 1
             size_hint:.1,.05
-            pos_hint:{'x':.78,'y':.83}
+            pos_hint:{'x':.67,'y':.83}
             on_press:
                 app.click_sound
                 app.progress()
@@ -160,7 +157,7 @@
             text_color: 0, 1, 0, 1
             line_color: 0, 0, 1, 1
             size_hint:.1,.05
-            pos_hint:{'x':.89,'y':.83}
+            pos_hint:{'x':.78,'y':.83}
             on_press:
                 app.click_sound
                 app.progress()

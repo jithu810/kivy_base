@@ -34,6 +34,9 @@ import glob
 import shutil
 import os
 from kivymd.utils.fitimage import FitImage
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.button import Button
+from kivy.uix.popup import Popup
 
 
 
@@ -55,9 +58,9 @@ class Mainpage(MDScreen):
             select_path=self.select_path,
             ext=[".py", "kv",".vmem",".jpg",".jpeg",".png"],
         )
-        self.labeluser=MDLabel(text= self.now.strftime('%H:%M:%S'),font_style=("H6"),size_hint=(.1,.2),pos_hint={'x':.91,'y':.84},color=(1,1,1,1))
-        self.layout.add_widget(self.labeluser)
-        self.date=MDLabel(text=str(today),font_style=("H6"),size_hint=(.1,.2),pos_hint={'x':.90,'y':.88},color=(1,1,1,1))
+        self.time=MDLabel(text= self.now.strftime('%H:%M:%S'),size_hint=(.05,.1),pos_hint={'x':.91,'y':.89},color=(1,1,1,1))
+        self.layout.add_widget(self.time)
+        self.date=MDLabel(text=str(today),size_hint=(.1,.2),pos_hint={'x':.90,'y':.88},color=(1,1,1,1))
         self.layout.add_widget(self.date)
         self.person=MDRoundFlatIconButton(text_color=(1, 0, 0, 1),line_color=(1, 1, 1, 1),icon_color=(1, 0, 0, 1),icon="account",pos_hint={'x':.17,'y':.93})
         self.person.bind(on_press=self.profile)
@@ -65,7 +68,23 @@ class Mainpage(MDScreen):
         self.image=FitImage(size_hint=(.03,.05),pos_hint={'x':.12,'y':.93},radius=[30,])
         self.add_widget(self.image)
 
+    def exitMessage(self):
+        layout = GridLayout(cols = 1, padding = 10) 
+        popupLabel = Label(text="are you sure you want to exit app")
+        closeButton = Button(text = "Close")
+        confirm=Button(text = "confirm")
+        layout.add_widget(popupLabel)
+        layout.add_widget(closeButton)
+        layout.add_widget(confirm)
+        self.popup = Popup(title='message',
+    content=layout,
+    size_hint=(None, None), size=(400, 400))
+        self.popup.open()
+        closeButton.bind(on_press = self.popup.dismiss)
+        confirm.bind(on_press=self.exit)
 
+    def exit(self,instance):
+        MDApp.get_running_app().stop()
 
        
 

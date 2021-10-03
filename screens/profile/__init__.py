@@ -18,8 +18,10 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.uix.popup import Popup
 import bcrypt
-
+import shutil
 from kivymd.utils.fitimage import FitImage
+import plyer
+
 class Profile(MDScreen):
     def __init__(self,**kwargs):
         super(Profile,self).__init__(**kwargs)
@@ -31,9 +33,10 @@ class Profile(MDScreen):
         self.image=FitImage(size_hint=(.05,.09),pos_hint={'x':.13,'y':.75},radius=[35,])
         self.add_widget(self.image)
         
-        
 
      
+    def show_notification(self):
+        plyer.notification.notify(title='test', message="Notification using plyer")
 
 
     def Updateprofile(self):
@@ -158,6 +161,7 @@ class Profile(MDScreen):
                 self.ids.email.text=str(i[1])
 
     def delete_data(self,instance):
+        self.popup.dismiss()
         user=self.label.text
         name=self.label2.text
         if user=='user':
@@ -169,6 +173,11 @@ class Profile(MDScreen):
             c.close()
             delete=("deleted user"+str(name))
             MDApp.get_running_app().Message(delete)
+            try:
+                mydir="data/profile/"+str(name)
+                shutil.rmtree(mydir)
+            except :
+                pass
             MDApp.get_running_app().switch_screen('login')
 
         elif user=='admin':
@@ -180,6 +189,11 @@ class Profile(MDScreen):
             c2.close()
             delete=("deleted admin"+str(name))
             MDApp.get_running_app().Message(delete)
+            try:
+                mydir="data/profile/"+str(name)
+                shutil.rmtree(mydir)
+            except :
+                pass
             MDApp.get_running_app().switch_screen('login')
 
     def Message(self):

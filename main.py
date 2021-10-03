@@ -39,6 +39,8 @@ resource_add_path(resource_path(os.path.join('screens', 'admin')))
 resource_add_path(resource_path(os.path.join('screens', 'user')))
 resource_add_path(resource_path(os.path.join('screens', 'profile')))
 resource_add_path(resource_path(os.path.join('screens', 'table')))
+resource_add_path(resource_path(os.path.join('screens', 'messages')))
+
 resource_add_path(resource_path(os.path.join('sound')))
 
 
@@ -92,7 +94,7 @@ class Software(MDApp):
         if getattr(sys, 'frozen', False):
             pass        
         else:
-            from screens import mainpage,cloud,login,settings,account,dashboard,admin,user,profile,table
+            from screens import mainpage,cloud,login,settings,account,dashboard,admin,user,profile,table,messages
         self.sm = ScreenManager()
         self.mainpage = mainpage.Mainpage()
         self.cloud=cloud.Cloud()
@@ -104,6 +106,7 @@ class Software(MDApp):
         self.admin=admin.Admin()
         self.profile=profile.Profile()
         self.table=table.Table()
+        self.messages=messages.Messages()
         self.screens = {
             'login':self.login,
             'mainpage': self.mainpage,
@@ -114,7 +117,8 @@ class Software(MDApp):
             'user':self.user,
             'admin':self.admin,
             'profile':self.profile,
-            'table':self.table
+            'table':self.table,
+            'messages':self.messages
         }
         self.sm.switch_to(self.login)
 

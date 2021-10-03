@@ -93,7 +93,30 @@
             pos_hint:{'x':.11,'y':.7}
             on_press:
                 app.click_sound
-                app.choosefile()    
+                app.choosefile() 
+
+        MDFillRoundFlatButton:
+            text: "notifications"
+            custom_color: 0, 1, 0, 1
+            text_color: 0, 1, 0, 1
+            line_color: 0, 0, 1, 1
+            size_hint:.1,.05
+            pos_hint:{'x':.56,'y':.93}
+            on_press:
+                app.click_sound   
+                root.show_notification()
+
+        MDFillRoundFlatButton:
+            text: "messages"
+            custom_color: 0, 1, 0, 1
+            text_color: 0, 1, 0, 1
+            line_color: 0, 0, 1, 1
+            size_hint:.1,.05
+            pos_hint:{'x':.67,'y':.93}
+            on_press:
+                app.click_sound
+                app.switch_screen('messages') 
+                
 
         MDFillRoundFlatButton:
             text: "settings"
